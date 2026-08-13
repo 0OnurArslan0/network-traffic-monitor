@@ -1,0 +1,10 @@
+venv/
+__pycache__/
+*.pyc
+*.pcap
+.env
+
+# generated locally by install-launcher.sh — contains a machine-specific
+# absolute path, so it shouldn't be committed. traffic-monitor.desktop.template
+# is the tracked, portable source.
+/traffic-monitor.desktop

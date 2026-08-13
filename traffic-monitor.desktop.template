@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Version=1.0
+Name=Network Traffic Monitor
+Comment=Read-only live network traffic dashboard
+Exec=__INSTALL_DIR__/run.sh
+Icon=network-wired
+Terminal=false
+Categories=Network;Monitor;System;
+StartupNotify=true

@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Network Traffic Monitor</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <div class="topbar">
+    <h1>Network Traffic Monitor</h1>
+    <span class="status-pill"><span id="status-dot" class="status-dot"></span><span id="status-text">Stopped</span></span>
+    <div class="spacer"></div>
+    <button id="stop-btn" class="danger hidden">Stop capture</button>
+  </div>
+
+  <main>
+    <section id="setup" class="setup-card">
+      <h2>Select a network interface</h2>
+      <p class="hint">Monitoring mode only — no packets are ever blocked, filtered, or modified.</p>
+      <div class="field">
+        <select id="iface-select"></select>
+        <button id="start-btn" class="primary">Start capture</button>
+      </div>
+      <div id="error-banner" class="error-banner hidden"></div>
+    </section>
+
+    <section id="dashboard" class="hidden">
+      <div class="tiles">
+        <div class="tile">
+          <div class="label">Throughput</div>
+          <div class="value" id="tile-throughput">0 B/s</div>
+          <div class="sub" id="tile-throughput-sub">last 3s window</div>
+        </div>
+        <div class="tile">
+          <div class="label">Packets / sec</div>
+          <div class="value" id="tile-pps">0</div>
+          <div class="sub">&nbsp;</div>
+        </div>
+        <div class="tile">
+          <div class="label">Total captured</div>
+          <div class="value" id="tile-total">0</div>
+          <div class="sub" id="tile-total-sub">0 B</div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h3>Live throughput</h3>
+        <div id="chart-wrap">
+          <svg id="chart" viewBox="0 0 600 180" preserveAspectRatio="none"></svg>
+          <div id="chart-tooltip" class="chart-tooltip"></div>
+        </div>
+      </div>
+
+      <div class="panel">
+        <h3>Protocol breakdown</h3>
+        <div id="protocols"></div>
+      </div>
+
+      <div class="grid-2">
+        <div class="panel">
+          <h3>Active devices</h3>
+          <div class="table-scroll">
+            <table id="devices-table">
+              <thead>
+                <tr>
+                  <th data-key="ip">Device</th>
+                  <th data-key="bytes_sent" class="num">Sent</th>
+                  <th data-key="bytes_recv" class="num">Recv</th>
+                  <th data-key="total_bytes" class="num">Total</th>
+                  <th data-key="packets" class="num">Pkts</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="panel">
+          <h3>Top connections</h3>
+          <div class="table-scroll">
+            <table id="connections-table">
+              <thead>
+                <tr>
+                  <th data-key="src">Source</th>
+                  <th data-key="dst">Destination</th>
+                  <th data-key="protocol">Proto</th>
+                  <th data-key="bytes_total" class="num">Bytes</th>
+                  <th data-key="packets" class="num">Pkts</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="/app.js"></script>
+</body>
+</html>
